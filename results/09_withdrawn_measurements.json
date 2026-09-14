@@ -1,0 +1,33 @@
+{
+ "item2": {
+  "5.0e+10": {
+   "data": 9.187515306927578,
+   "inhomogeneous_mean": 9.532486407491238,
+   "inhomogeneous_min": 9.283026007219519,
+   "inhomogeneous_max": 9.70053746993402,
+   "homogeneous_mean": 1.0001313492321875
+  },
+  "1.1e+11": {
+   "data": 15.577839557361191,
+   "inhomogeneous_mean": 16.10638684011301,
+   "inhomogeneous_min": 15.679688528997357,
+   "inhomogeneous_max": 16.480886062649066,
+   "homogeneous_mean": 1.0000588940829291
+  },
+  "1.0e+12": {
+   "data": 72.34487794137742,
+   "inhomogeneous_mean": 73.90353413319943,
+   "inhomogeneous_min": 72.92110557121781,
+   "inhomogeneous_max": 74.96882292450326,
+   "homogeneous_mean": 0.9996664611441991
+  }
+ },
+ "item3": {
+  "total": 1231,
+  "empty": 1113,
+  "admissible": 118,
+  "occurring": 118,
+  "max_classes": 1,
+  "empty_fraction": 0.9041429731925265
+ }
+}

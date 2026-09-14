@@ -1,0 +1,19 @@
+line counts {'carmichael-16': 246683, 'carmichael17': 338672, 'carmichael18': 816289} total 1401644
+product mismatches 0 | not squarefree 0 | Korselt failures 0 | strictly increasing True
+C(10^ 3) published=       1 reconstructed=       1
+C(10^ 4) published=       7 reconstructed=       7
+C(10^ 5) published=      16 reconstructed=      16
+C(10^ 6) published=      43 reconstructed=      43
+C(10^ 7) published=     105 reconstructed=     105
+C(10^ 8) published=     255 reconstructed=     255
+C(10^ 9) published=     646 reconstructed=     646
+C(10^10) published=    1547 reconstructed=    1547
+C(10^11) published=    3605 reconstructed=    3605
+C(10^12) published=    8241 reconstructed=    8241
+C(10^13) published=   19279 reconstructed=   19279
+C(10^14) published=   44706 reconstructed=   44706
+C(10^15) published=  105212 reconstructed=  105212
+C(10^16) published=  246683 reconstructed=  246683
+C(10^17) published=  585355 reconstructed=  585355
+C(10^18) published= 1401644 reconstructed= 1401644
+all sixteen checkpoints match: True

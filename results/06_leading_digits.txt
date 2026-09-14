@@ -1,0 +1,15 @@
+observed  0.2153 0.1546 0.1255 0.1074 0.0943 0.0850 0.0781 0.0723 0.0676
+predicted 0.2161 0.1552 0.1254 0.1071 0.0944 0.0850 0.0778 0.0719 0.0671
+max |obs-pred| = 0.00080, max relative = 0.69%
+chi-square = 18.37 on 8 df, 5% critical value 15.51, p = 0.0186
+r= 3 count=  16047 alpha=0.264 95% CI [0.238, 0.288]
+r= 4 count=  14927 alpha=0.174 95% CI [0.148, 0.200]
+r= 5 count=  77356 alpha=0.225 95% CI [0.213, 0.237]
+r= 6 count= 220354 alpha=0.306 95% CI [0.299, 0.313]
+r= 7 count= 288319 alpha=0.396 95% CI [0.390, 0.403]
+r= 8 count= 160362 alpha=0.515 95% CI [0.507, 0.523]
+r= 9 count=  36158 alpha=0.661 95% CI [0.644, 0.677]
+r=10 count=   2718 alpha=0.853 95% CI [0.790, 0.916]
+r=11 count=     48 alpha=1.243 95% CI [0.628, 2.167]
+aggregate best alpha 0.3810, occupancy-weighted theta 0.3766, gap +0.0044
+restricted to r = 3..6 (668994 numbers): best alpha 0.2905, gap -0.0862

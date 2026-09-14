@@ -1,0 +1,154 @@
+OK      census total                                                   quoted=       1401644 computed=               1401644
+OK      lines below 1e16                                               quoted=        246683 computed=                246683
+OK      lines 1e16-1e17                                                quoted=        338672 computed=                338672
+OK      lines 1e17-1e18                                                quoted=        816289 computed=                816289
+OK      sixteen checkpoints match                                      quoted=          True computed=                  True
+OK      Korselt failures                                               quoted=             0 computed=                     0
+OK      product mismatches                                             quoted=             0 computed=                     0
+OK      repeated primes                                                quoted=             0 computed=                     0
+OK      gaps in Table 1 caption                                        quoted=       1401643 computed=               1401643
+OK      D_W below q95 at W=1000                                        quoted=          True computed=                  True
+OK      D_W below q95 at W=5000                                        quoted=          True computed=                  True
+OK      D_W above q95 at W=20000                                       quoted=          True computed=                  True
+OK      no test rejects at 5%                                          quoted=          True computed=                  True
+OK      gamma 0.99 and 1.01 rejected in every realization (D, ratio, mean) quoted=          True computed=                  True
+OK      Poisson mean ratio 2 log 2 - 1                                 quoted=        0.3863 computed=                0.3863
+OK      tabulation to 1e24 holds about 220 times the points            quoted=           220 computed=                   220
+OK      standard error factor about 15                                 quoted=            15 computed=                    15
+OK      excess at lags 1 and 2 of order 1e-3                           quoted=          True computed=                  True
+OK      observed digit 1                                               quoted=        0.2153 computed=                0.2153
+OK      predicted digit 1                                              quoted=        0.2161 computed=                0.2161
+OK      observed digit 2                                               quoted=        0.1546 computed=                0.1546
+OK      predicted digit 2                                              quoted=        0.1552 computed=                0.1552
+OK      observed digit 3                                               quoted=        0.1255 computed=                0.1255
+OK      predicted digit 3                                              quoted=        0.1254 computed=                0.1254
+OK      observed digit 4                                               quoted=        0.1074 computed=                0.1074
+OK      predicted digit 4                                              quoted=        0.1071 computed=                0.1071
+OK      observed digit 5                                               quoted=        0.0943 computed=                0.0943
+OK      predicted digit 5                                              quoted=        0.0944 computed=                0.0944
+OK      observed digit 6                                               quoted=         0.085 computed=                 0.085
+OK      predicted digit 6                                              quoted=         0.085 computed=                 0.085
+OK      observed digit 7                                               quoted=        0.0781 computed=                0.0781
+OK      predicted digit 7                                              quoted=        0.0778 computed=                0.0778
+OK      observed digit 8                                               quoted=        0.0723 computed=                0.0723
+OK      predicted digit 8                                              quoted=        0.0719 computed=                0.0719
+OK      observed digit 9                                               quoted=        0.0676 computed=                0.0676
+OK      predicted digit 9                                              quoted=        0.0671 computed=                0.0671
+OK      max absolute deviation 0.0008                                  quoted=        0.0008 computed=                0.0008
+OK      max relative deviation 0.69%                                   quoted=          0.69 computed=                  0.69
+OK      chi-square 18.37                                               quoted=         18.37 computed=                 18.37
+OK      critical value 15.51                                           quoted=         15.51 computed=                 15.51
+OK      p = 0.019                                                      quoted=         0.019 computed=                 0.019
+OK      alpha r=3                                                      quoted=         0.264 computed=                 0.264
+OK      count r=3                                                      quoted=         16047 computed=                 16047
+OK      alpha r=4                                                      quoted=         0.174 computed=                 0.174
+OK      count r=4                                                      quoted=         14927 computed=                 14927
+OK      alpha r=5                                                      quoted=         0.225 computed=                 0.225
+OK      count r=5                                                      quoted=         77356 computed=                 77356
+OK      alpha r=6                                                      quoted=         0.306 computed=                 0.306
+OK      count r=6                                                      quoted=        220354 computed=                220354
+OK      alpha r=7                                                      quoted=         0.396 computed=                 0.396
+OK      count r=7                                                      quoted=        288319 computed=                288319
+OK      alpha r=8                                                      quoted=         0.515 computed=                 0.515
+OK      count r=8                                                      quoted=        160362 computed=                160362
+OK      alpha r=9                                                      quoted=         0.661 computed=                 0.661
+OK      count r=9                                                      quoted=         36158 computed=                 36158
+OK      alpha r=10                                                     quoted=         0.853 computed=                 0.853
+OK      count r=10                                                     quoted=          2718 computed=                  2718
+OK      r=11 count 48                                                  quoted=            48 computed=                    48
+OK      r=11 interval lower 0.63                                       quoted=          0.63 computed=                  0.63
+OK      r=11 interval upper 2.17                                       quoted=          2.17 computed=                  2.17
+OK      eight columns cover 816,241                                    quoted=        816241 computed=                816241
+OK      decade total 816,289                                           quoted=        816289 computed=                816289
+OK      consecutive intervals do not overlap from r=4                  quoted=          True computed=                  True
+OK      aggregate alpha 0.3810                                         quoted=         0.381 computed=                 0.381
+OK      growth exponent 0.3766                                         quoted=        0.3766 computed=                0.3766
+OK      aggregate gap 0.0044                                           quoted=        0.0044 computed=                0.0044
+OK      numbers with r = 3..6                                          quoted=        668994 computed=                668994
+OK      restricted alpha 0.2905                                        quoted=        0.2905 computed=                0.2905
+OK      prediction covers all but 561                                  quoted=       1401643 computed=               1401643
+OK      tuples k=3 numbers                                             quoted=         35586 computed=                 35586
+OK      tuples k=3 distinct                                            quoted=         19040 computed=                 19040
+OK      tuples k=3 most frequent                                       quoted=([1, 2, 3], 783) computed=      ([1, 2, 3], 783)
+OK      tuples k=4 numbers                                             quoted=         40685 computed=                 40685
+OK      tuples k=4 distinct                                            quoted=         40092 computed=                 40092
+OK      tuples k=4 most frequent                                       quoted=([1, 3, 6, 10], 18) computed=   ([1, 3, 6, 10], 18)
+OK      tuples k=5 numbers                                             quoted=        178063 computed=                178063
+OK      tuples k=5 distinct                                            quoted=        178038 computed=                178038
+OK      tuples k=6 numbers                                             quoted=        414660 computed=                414660
+OK      tuples k=6 distinct                                            quoted=        414660 computed=                414660
+OK      k=5 at most 3 occurrences                                      quoted=             3 computed=                     3
+OK      k=6 every tuple once                                           quoted=             1 computed=                     1
+OK      share of (1,2,3) 2.20%                                         quoted=           2.2 computed=                   2.2
+OK      next five tuples for k=3                                       quoted=[[[1, 2, 15], 330], [[1, 2, 5], 308], [[1, 3, 4], 294], [[1, 3, 5], 288], [[1, 3, 10], 281]] computed=[[[1, 2, 15], 330], [[1, 2, 5], 308], [[1, 3, 4], 294], [[1, 3, 5], 288], [[1, 3, 10], 281]]
+OK      numbers with at most six factors                               quoted=        668994 computed=                668994
+OK      tuples with LCM <= 44                                          quoted=           105 computed=                   105
+OK      of which three-factor                                          quoted=            28 computed=                    28
+OK      sieve agrees on all                                            quoted=           105 computed=                   105
+OK      sieve extract (1, 2, 3)                                        quoted=    [783, 783] computed=            [783, 783]
+OK      sieve extract (1, 2, 5)                                        quoted=    [308, 308] computed=            [308, 308]
+OK      sieve extract (1, 3, 4)                                        quoted=    [294, 294] computed=            [294, 294]
+OK      sieve extract (1, 3, 5)                                        quoted=    [288, 288] computed=            [288, 288]
+OK      sieve extract (1, 3, 8)                                        quoted=    [217, 217] computed=            [217, 217]
+OK      sieve extract (1, 2, 15)                                       quoted=    [330, 330] computed=            [330, 330]
+OK      sieve extract (2, 3, 5)                                        quoted=    [243, 243] computed=            [243, 243]
+OK      sieve extract (1, 6, 7)                                        quoted=    [149, 149] computed=            [149, 149]
+OK      (1,2,3) below 1e18                                             quoted=           783 computed=                   783
+OK      (1,2,3) below 1e24                                             quoted=         30601 computed=                 30601
+OK      run to 1e24 under one minute                                   quoted=          True computed=                  True
+OK      Chernick closed form on all tuples                             quoted=          2866 computed=                  2866
+OK      pairwise coprime tuples below 40                               quoted=          2866 computed=                  2866
+OK      theta 1979                                                     quoted=        0.8284 computed=                0.8284
+OK      exponent 1979                                                  quoted=        0.0812 computed=                0.0812
+OK      theta 1980                                                     quoted=         0.449 computed=                 0.449
+OK      exponent 1980                                                  quoted=        0.2609 computed=                0.2609
+OK      theta 1983                                                     quoted=          0.35 computed=                  0.35
+OK      exponent 1983                                                  quoted=        0.3078 computed=                0.3078
+OK      theta 1986                                                     quoted=        0.3174 computed=                0.3174
+OK      exponent 1986                                                  quoted=        0.3232 computed=                0.3232
+OK      theta 1989                                                     quoted=        0.3032 computed=                0.3032
+OK      exponent 1989                                                  quoted=        0.3299 computed=                0.3299
+OK      theta 1998                                                     quoted=        0.2961 computed=                0.2961
+OK      exponent 1998                                                  quoted=        0.3333 computed=                0.3333
+OK      theta 2022                                                     quoted=        0.2843 computed=                0.2843
+OK      exponent 2022                                                  quoted=        0.3389 computed=                0.3389
+OK      record 0.33895...                                              quoted=       0.33895 computed=               0.33895
+OK      observed exponent at 1e24                                      quoted=        0.3537 computed=                0.3537
+OK      L=5040 r, phi, lambda                                          quoted=(23, 1152, 12) computed=        (23, 1152, 12)
+OK      L=5040 deviation                                               quoted=       8.0e-03 computed=               8.0e-03
+OK      L=5040 index-two subgroups                                     quoted=            31 computed=                    31
+OK      L=5040 lambda squared                                          quoted=           144 computed=                   144
+OK      L=5040 classical bound                                         quoted=            67 computed=                    67
+OK      L=5040 guarantee exceeds supply                                quoted=          True computed=                  True
+OK      L=55440 r, phi, lambda                                         quoted=(40, 11520, 60) computed=       (40, 11520, 60)
+OK      L=55440 deviation                                              quoted=       5.5e-05 computed=               5.5e-05
+OK      L=55440 index-two subgroups                                    quoted=            63 computed=                    63
+OK      L=55440 lambda squared                                         quoted=          3600 computed=                  3600
+OK      L=55440 classical bound                                        quoted=           375 computed=                   375
+OK      L=55440 guarantee exceeds supply                               quoted=          True computed=                  True
+OK      L=720720 r, phi, lambda                                        quoted=(75, 138240, 60) computed=      (75, 138240, 60)
+OK      L=720720 deviation                                             quoted=       1.6e-08 computed=               1.6e-08
+OK      L=720720 index-two subgroups                                   quoted=           127 computed=                   127
+OK      L=720720 lambda squared                                        quoted=          3600 computed=                  3600
+OK      L=720720 classical bound                                       quoted=           525 computed=                   525
+OK      L=720720 guarantee exceeds supply                              quoted=          True computed=                  True
+OK      L=4324320 r, phi, lambda                                       quoted=(128, 829440, 360) computed=    (128, 829440, 360)
+OK      L=4324320 deviation below 1e-14                                quoted=          True computed=                  True
+OK      L=4324320 index-two subgroups                                  quoted=           127 computed=                   127
+OK      L=4324320 lambda squared                                       quoted=        129600 computed=                129600
+OK      L=4324320 classical bound                                      quoted=          3147 computed=                  3147
+OK      L=4324320 guarantee exceeds supply                             quoted=          True computed=                  True
+OK      shortfall factor 1,012                                         quoted=          1012 computed=                  1012
+OK      function-field cases                                           quoted=           163 computed=                   163
+OK      function-field agreement                                       quoted=           163 computed=                   163
+OK      item ii data 15.58                                             quoted=         15.58 computed=                 15.58
+OK      item ii inhomogeneous 16.11                                    quoted=         16.11 computed=                 16.11
+OK      item ii range 15.68                                            quoted=         15.68 computed=                 15.68
+OK      item ii range 16.48                                            quoted=         16.48 computed=                 16.48
+OK      item ii homogeneous 1.00                                       quoted=           1.0 computed=                   1.0
+OK      item iii tuples                                                quoted=          1231 computed=                  1231
+OK      item iii without solution                                      quoted=          1113 computed=                  1113
+OK      item iii admissible and all occur                              quoted=    (118, 118) computed=            (118, 118)
+OK      item iii at most one class                                     quoted=             1 computed=                     1
+
+ALL QUOTED NUMBERS MATCH

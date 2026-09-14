@@ -1,0 +1,12 @@
+k=3: numbers=35586 distinct=19040 top=[((1, 2, 3), 783), ((1, 2, 15), 330)]
+k=4: numbers=40685 distinct=40092 top=[((1, 3, 6, 10), 18), ((1, 2, 3, 6), 15)]
+k=5: numbers=178063 distinct=178038 top=[((1, 3, 10, 21, 105), 3), ((1, 2, 5, 10, 30), 2)]
+k=6: numbers=414660 distinct=414660 top=[((2, 9, 11, 14, 18, 68), 1), ((2, 3, 8, 36, 44, 53), 1)]
+numbers with at most six prime factors: 668994
+tuples in the census with LCM <= 44: 105 (28 with three factors); sieve agrees on 105
+(1,2,3): 783 below 1e18 in 0.27s, 30601 below 1e24 in 28.1s
+closed form equals the enumerated residue on 2866 of 2866 pairwise coprime tuples
+k=3: census tuples with LCM <= 3000 = 4184, admissible-class counts {1: 4184}
+k=4: census tuples with LCM <= 3000 = 3385, admissible-class counts {1: 1901, 2: 1222, 3: 21, 4: 210, 5: 9, 6: 14, 7: 3, 8: 3, 10: 1, 12: 1}
+k=5: census tuples with LCM <= 3000 = 2894, admissible-class counts {1: 1354, 2: 1076, 3: 123, 4: 239, 5: 16, 6: 57, 7: 3, 8: 12, 9: 2, 10: 4, 12: 7, 15: 1}
+k=6: census tuples with LCM <= 3000 = 2710, admissible-class counts {1: 1086, 2: 1002, 3: 119, 4: 323, 5: 24, 6: 77, 8: 36, 9: 5, 10: 8, 12: 17, 15: 2, 16: 5, 18: 3, 20: 2, 36: 1}

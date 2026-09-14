@@ -1,0 +1,30 @@
+W=   100 mean=1.0000 sd=0.9891 med=0.6984 m2=1.978 m3=5.810 D=0.00296 q95=0.00305 p=0.095
+W=  1000 mean=0.9998 sd=0.9977 med=0.6941 m2=1.995 m3=5.957 D=0.00072 q95=0.00104 p=0.403
+W=  5000 mean=0.9986 sd=0.9979 med=0.6926 m2=1.993 m3=5.957 D=0.00067 q95=0.00093 p=0.348
+W= 20000 mean=0.9944 sd=0.9962 med=0.6884 m2=1.981 m3=5.917 D=0.00284 q95=0.00225 p=0.005
+1e12-1e13: n=  11038 mean=0.9989 sd=0.9991 med=0.6888 D=0.00561 q95=0.01024 p=0.811
+1e13-1e14: n=  25427 mean=1.0001 sd=1.0034 med=0.7029 D=0.00595 q95=0.00691 p=0.114
+1e14-1e15: n=  60506 mean=0.9998 sd=0.9959 med=0.6956 D=0.00261 q95=0.00415 p=0.627
+1e15-1e16: n= 141471 mean=1.0000 sd=0.9977 med=0.6937 D=0.00125 q95=0.00296 p=0.910
+1e16-1e17: n= 338672 mean=1.0000 sd=0.9955 med=0.6958 D=0.00159 q95=0.00195 p=0.184
+1e17-1e18: n= 816289 mean=1.0000 sd=0.9987 med=0.6935 D=0.00081 q95=0.00136 p=0.572
+  null rep 1 at 113s
+  null rep 100 at 191s
+  null rep 500 at 672s
+D_1000  obs=0.000723 null mean=0.000681 [0.000390, 0.001108] p=0.368 lattice=0.4825 rejects=True
+D_rat   obs=0.000533 null mean=0.000783 [0.000425, 0.001349] p=0.864 lattice=0.7377 rejects=True
+m_rat   obs=0.386343 null mean=0.386296 [0.385779, 0.386830] p=0.869 lattice=0.8487 rejects=True
+D_cf    obs=0.000928 null mean=0.001180 [0.000853, 0.001586] p=0.926 lattice=0.2878 rejects=True
+rho_1   obs=0.191790 null mean=0.190380 [0.188779, 0.192095] p=0.095 lattice=0.1748 rejects=True
+power gamma 0.995       D_1000=0.71 D_rat=0.93 m_rat=0.87 D_cf=0.44 rho_1=0.03
+power gamma 1.005       D_1000=0.96 D_rat=0.91 m_rat=0.91 D_cf=0.04 rho_1=0.07
+power gamma 0.99        D_1000=1.00 D_rat=1.00 m_rat=1.00 D_cf=0.96 rho_1=0.07
+power gamma 1.01        D_1000=1.00 D_rat=1.00 m_rat=1.00 D_cf=0.69 rho_1=0.02
+power copula rho 0.002  D_1000=0.07 D_rat=0.17 m_rat=0.11 D_cf=0.06 rho_1=0.09
+power copula rho 0.005  D_1000=0.07 D_rat=0.65 m_rat=0.67 D_cf=0.16 rho_1=0.45
+intensity smoothed over S=  2000: W=1000 q95=0.00099 p=0.284  W=20000 q95=0.00369 p=0.920
+intensity smoothed over S=  5000: W=1000 q95=0.00102 p=0.378  W=20000 q95=0.00349 p=0.776
+intensity smoothed over S= 20000: W=1000 q95=0.00106 p=0.348  W=20000 q95=0.00226 p=0.005
+intensity smoothed over S=100000: W=1000 q95=0.00102 p=0.368  W=20000 q95=0.00113 p=0.005
+global intensity from 61 values of C(x), n >= 1e6: mean=1.0000 sd=0.9987 D=0.00056 q95=0.00094 p=0.587
+done in 1983s

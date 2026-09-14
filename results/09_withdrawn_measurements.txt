@@ -1,0 +1,4 @@
+length 5.0e+10: data 9.19, inhomogeneous 9.53 (9.28 to 9.70), homogeneous 1.00
+length 1.1e+11: data 15.58, inhomogeneous 16.11 (15.68 to 16.48), homogeneous 1.00
+length 1.0e+12: data 72.34, inhomogeneous 73.90 (72.92 to 74.97), homogeneous 1.00
+three-entry tuples with LCM <= 120: 1231; no solution in g: 1113; admissible: 118, of which occur in the census: 118; largest number of classes: 1; empty fraction 90.4%

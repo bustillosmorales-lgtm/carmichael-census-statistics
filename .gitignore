@@ -1,0 +1,4 @@
+data/*.gz
+data/*.html
+results/census.npz
+__pycache__/

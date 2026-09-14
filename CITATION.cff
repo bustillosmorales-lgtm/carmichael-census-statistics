@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the article and this repository."
+title: "Statistical structure of Carmichael numbers from a complete census: code and results"
+authors:
+  - family-names: Bustillos
+    given-names: Francisco
+    orcid: "https://orcid.org/0009-0001-7251-310X"
+    affiliation: "Universidad Católica del Maule"
+  - family-names: Leiva
+    given-names: Víctor
+    orcid: "https://orcid.org/0000-0003-4755-3270"
+    affiliation: "Pontificia Universidad Católica de Valparaíso"
+version: 1.0.0
+date-released: 2026-09-13
+license: MIT
+repository-code: "https://github.com/bustillosmorales-lgtm/carmichael-census-statistics"

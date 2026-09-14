@@ -1,0 +1,105 @@
+{
+ "chronology": [
+  {
+   "year": 1979,
+   "author": "Wooldridge",
+   "theta": 0.8284271247461903,
+   "theta_4": 0.8284,
+   "exponent": 0.08125691372020429,
+   "exponent_4": 0.0812
+  },
+  {
+   "year": 1980,
+   "author": "Pomerance",
+   "theta": 0.4490715834612333,
+   "theta_4": 0.449,
+   "exponent": 0.2609196980727599,
+   "exponent_4": 0.2609
+  },
+  {
+   "year": 1983,
+   "author": "Balog",
+   "theta": 0.35,
+   "theta_4": 0.35,
+   "exponent": 0.30784,
+   "exponent_4": 0.3078
+  },
+  {
+   "year": 1986,
+   "author": "Fouvry-Grupp",
+   "theta": 0.3174935231493077,
+   "theta_4": 0.3174,
+   "exponent": 0.3232350674364879,
+   "exponent_4": 0.3232
+  },
+  {
+   "year": 1989,
+   "author": "Friedlander",
+   "theta": 0.3032653298563167,
+   "theta_4": 0.3032,
+   "exponent": 0.3299735397800484,
+   "exponent_4": 0.3299
+  },
+  {
+   "year": 1998,
+   "author": "Baker-Harman",
+   "theta": 0.2961,
+   "theta_4": 0.2961,
+   "exponent": 0.33336704,
+   "exponent_4": 0.3333
+  },
+  {
+   "year": 2022,
+   "author": "Lichtman",
+   "theta": 0.2843112467402969,
+   "theta_4": 0.2843,
+   "exponent": 0.3389501935437954,
+   "exponent_4": 0.3389
+  }
+ ],
+ "observed_exponent_1e24": 0.35370605268246735,
+ "equid": {
+  "5040": {
+   "r": 23,
+   "phi": 1152,
+   "lam": 12,
+   "max_rel_dev": 0.00799560546875,
+   "index_two_subgroups": 31,
+   "lam_sq": 144,
+   "classical": 66.77217829761403,
+   "shortfall_sq": 6.260869565217392
+  },
+  "55440": {
+   "r": 40,
+   "phi": 11520,
+   "lam": 60,
+   "max_rel_dev": 5.50723634660244e-05,
+   "index_two_subgroups": 63,
+   "lam_sq": 3600,
+   "classical": 375.4497223216669,
+   "shortfall_sq": 90.0
+  },
+  "720720": {
+   "r": 75,
+   "phi": 138240,
+   "lam": 60,
+   "max_rel_dev": 1.60737090304508e-08,
+   "index_two_subgroups": 127,
+   "lam_sq": 3600,
+   "classical": 524.5441213089468,
+   "shortfall_sq": 48.0
+  },
+  "4324320": {
+   "r": 128,
+   "phi": 829440,
+   "lam": 360,
+   "max_rel_dev": 4.773959005888173e-15,
+   "index_two_subgroups": 127,
+   "lam_sq": 129600,
+   "classical": 3147.2647278536815,
+   "shortfall_sq": 1012.5
+  }
+ },
+ "function_field_cases": 163,
+ "function_field_agree": 163
+}
