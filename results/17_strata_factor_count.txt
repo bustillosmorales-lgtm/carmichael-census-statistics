@@ -1,0 +1,42 @@
+r=3: slow variation W=1000 median 0.1379, 99% 0.2974, share>0.05 0.766
+r= 3 all        n=  35585 D_1000: p=0.001 D_ratio: p=0.954 m_ratio: p=0.983 rho_1: p=0.464 rho_2: p=0.940 Q_10: p=0.883
+r= 3 ge1e12     n=  34585 D_1000: p=0.508 D_ratio: p=0.902 m_ratio: p=0.725 rho_1: p=0.468 rho_2: p=0.848 Q_10: p=0.908
+r= 3 1e15-1e16  n=   4733 D_1000: p=0.705 D_ratio: p=0.964 m_ratio: p=0.604 rho_1: p=0.334 rho_2: p=0.717 Q_10: p=0.402
+r= 3 1e16-1e17  n=   8723 D_1000: p=0.944 D_ratio: p=0.525 m_ratio: p=0.418 rho_1: p=0.748 rho_2: p=0.250 Q_10: p=0.231
+r= 3 1e17-1e18  n=  16046 D_1000: p=0.035 D_ratio: p=0.816 m_ratio: p=0.815 rho_1: p=0.711 rho_2: p=0.098 Q_10: p=0.048
+r=4: slow variation W=1000 median 0.1621, 99% 0.3392, share>0.05 0.771
+r= 4 all        n=  40684 D_1000: p=0.001 D_ratio: p=0.815 m_ratio: p=0.771 rho_1: p=0.708 rho_2: p=0.804 Q_10: p=0.263
+r= 4 ge1e12     n=  38582 D_1000: p=0.611 D_ratio: p=0.564 m_ratio: p=0.433 rho_1: p=0.551 rho_2: p=0.827 Q_10: p=0.100
+r= 4 1e15-1e16  n=   6264 D_1000: p=0.443 D_ratio: p=0.537 m_ratio: p=0.296 rho_1: p=0.688 rho_2: p=0.596 Q_10: p=0.051
+r= 4 1e16-1e17  n=   9556 D_1000: p=0.700 D_ratio: p=0.736 m_ratio: p=0.566 rho_1: p=0.310 rho_2: p=0.619 Q_10: p=0.590
+r= 4 1e17-1e18  n=  14926 D_1000: p=0.620 D_ratio: p=0.449 m_ratio: p=0.859 rho_1: p=0.728 rho_2: p=0.314 Q_10: p=0.235
+r=5: slow variation W=1000 median 0.0345, 99% 0.1815, share>0.05 0.306
+r= 5 all        n= 178062 D_1000: p=0.117 D_ratio: p=0.858 m_ratio: p=0.726 rho_1: p=0.738 rho_2: p=0.267 Q_10: p=0.476
+r= 5 ge1e12     n= 174906 D_1000: p=0.522 D_ratio: p=0.870 m_ratio: p=0.734 rho_1: p=0.748 rho_2: p=0.250 Q_10: p=0.463
+r= 5 1e15-1e16  n=  25730 D_1000: p=0.712 D_ratio: p=0.460 m_ratio: p=0.630 rho_1: p=0.716 rho_2: p=0.051 Q_10: p=0.787
+r= 5 1e16-1e17  n=  45695 D_1000: p=0.628 D_ratio: p=0.406 m_ratio: p=0.612 rho_1: p=0.419 rho_2: p=0.596 Q_10: p=0.311
+r= 5 1e17-1e18  n=  77355 D_1000: p=0.170 D_ratio: p=0.814 m_ratio: p=0.791 rho_1: p=0.774 rho_2: p=0.985 Q_10: p=0.671
+r=6: slow variation W=1000 median 0.0103, 99% 0.1075, share>0.05 0.077
+r= 6 all        n= 414659 D_1000: p=0.945 D_ratio: p=0.415 m_ratio: p=0.291 rho_1: p=0.090 rho_2: p=0.268 Q_10: p=0.569
+r= 6 ge1e12     n= 412945 D_1000: p=0.846 D_ratio: p=0.422 m_ratio: p=0.294 rho_1: p=0.107 rho_2: p=0.344 Q_10: p=0.622
+r= 6 1e15-1e16  n=  49789 D_1000: p=0.856 D_ratio: p=0.790 m_ratio: p=0.758 rho_1: p=0.284 rho_2: p=0.955 Q_10: p=0.755
+r= 6 1e16-1e17  n= 107610 D_1000: p=0.602 D_ratio: p=0.486 m_ratio: p=0.499 rho_1: p=0.127 rho_2: p=0.374 Q_10: p=0.413
+r= 6 1e17-1e18  n= 220353 D_1000: p=0.292 D_ratio: p=0.394 m_ratio: p=0.390 rho_1: p=0.029 rho_2: p=0.204 Q_10: p=0.432
+r=7: slow variation W=1000 median 0.0067, 99% 0.0730, share>0.05 0.037
+r= 7 all        n= 460552 D_1000: p=0.362 D_ratio: p=0.863 m_ratio: p=0.869 rho_1: p=0.524 rho_2: p=0.610 Q_10: p=0.510
+r= 7 ge1e12     n= 460290 D_1000: p=0.318 D_ratio: p=0.875 m_ratio: p=0.889 rho_1: p=0.536 rho_2: p=0.605 Q_10: p=0.524
+r= 7 1e15-1e16  n=  40940 D_1000: p=0.624 D_ratio: p=0.284 m_ratio: p=0.215 rho_1: p=0.992 rho_2: p=0.140 Q_10: p=0.036
+r= 7 1e16-1e17  n= 112084 D_1000: p=0.053 D_ratio: p=0.217 m_ratio: p=0.170 rho_1: p=0.159 rho_2: p=0.535 Q_10: p=0.158
+r= 7 1e17-1e18  n= 288318 D_1000: p=0.960 D_ratio: p=0.870 m_ratio: p=0.895 rho_1: p=0.440 rho_2: p=0.316 Q_10: p=0.957
+r=8: slow variation W=1000 median 0.0086, 99% 0.0556, share>0.05 0.019
+r= 8 all        n= 223996 D_1000: p=0.726 D_ratio: p=0.657 m_ratio: p=0.496 rho_1: p=0.269 rho_2: p=0.553 Q_10: p=0.744
+r= 8 ge1e12     n= 223989 D_1000: p=0.719 D_ratio: p=0.651 m_ratio: p=0.496 rho_1: p=0.268 rho_2: p=0.550 Q_10: p=0.746
+r= 8 1e15-1e16  n=  12726 D_1000: p=0.643 D_ratio: p=0.586 m_ratio: p=0.767 rho_1: p=0.301 rho_2: p=0.393 Q_10: p=0.712
+r= 8 1e16-1e17  n=  47287 D_1000: p=0.389 D_ratio: p=0.719 m_ratio: p=0.653 rho_1: p=0.845 rho_2: p=0.736 Q_10: p=0.925
+r= 8 1e17-1e18  n= 160361 D_1000: p=0.674 D_ratio: p=0.818 m_ratio: p=0.518 rho_1: p=0.331 rho_2: p=0.602 Q_10: p=0.745
+r=9: slow variation W=1000 median 0.0221, 99% 0.0461, share>0.05 0.000
+r= 9 all        n=  44992 D_1000: p=0.679 D_ratio: p=0.973 m_ratio: p=0.786 rho_1: p=0.078 rho_2: p=0.482 Q_10: p=0.740
+r= 9 ge1e12     n=  44992 D_1000: p=0.679 D_ratio: p=0.973 m_ratio: p=0.786 rho_1: p=0.078 rho_2: p=0.482 Q_10: p=0.740
+r= 9 1e16-1e17  n=   7399 D_1000: p=0.949 D_ratio: p=0.626 m_ratio: p=0.793 rho_1: p=0.005 rho_2: p=0.798 Q_10: p=0.229
+r= 9 1e17-1e18  n=  36157 D_1000: p=0.327 D_ratio: p=0.884 m_ratio: p=0.716 rho_1: p=0.570 rho_2: p=0.288 Q_10: p=0.806
+done in 420s

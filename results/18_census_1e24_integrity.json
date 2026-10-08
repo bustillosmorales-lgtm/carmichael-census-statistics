@@ -1,0 +1,30 @@
+{
+ "sha256": "c934af2a208832689586d12bbfe9e9cfc4ccb6447375baa39308d2e3373e6170",
+ "size": 18358310309,
+ "lines": 308279939,
+ "bad_product": 0,
+ "bad_repeat": 0,
+ "bad_korselt": 0,
+ "bad_order": 0,
+ "counts": {
+  "18": 1401644,
+  "19": 3381806,
+  "20": 8220777,
+  "21": 20138200,
+  "22": 49679870,
+  "23": 123381982,
+  "24": 308279939
+ },
+ "counts_match_oeis": {
+  "18": true,
+  "19": true,
+  "20": true,
+  "21": true,
+  "22": true,
+  "23": true,
+  "24": true
+ },
+ "elapsed_s": 475.33990931510925,
+ "below_1e18_equals_pinch": true,
+ "below_1e18_factor_counts_equal": true
+}
