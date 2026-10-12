@@ -31,20 +31,51 @@ from common import RESULTS
 
 MODE = sys.argv[1]
 DATA = sys.argv[-1]
+# Optional argument r=K (secondary analysis of the plan): restrict the analysis to the numbers with K
+# prime factors in the range; every procedure is unchanged and the outputs carry the suffix _rK.
+STRAT = next((int(x[2:]) for x in sys.argv[1:-1] if x.startswith("r=")), None)
+SUFFIX = "" if STRAT is None else f"_r{STRAT}"
 SEED = 20261013
 SPLIT = 10 ** 12
 W, S, LAGS = 1000, 20000, 10
 BLK = 1 << 24
 NB_FULL, NB_DEC = 1 << 22, 1 << 20
-OUT = os.path.join(DATA, "analysis")
+OUT = os.path.join(DATA, "analysis" if STRAT is None else f"analysis_r{STRAT}")
 os.makedirs(OUT, exist_ok=True)
 
 
 # ----------------------------------------------------------------------------- data
+def load_stratum(hi, lo, a):
+    """Gaps between consecutive numbers with STRAT prime factors, n >= 10^18, built block by block."""
+    rr = np.load(os.path.join(DATA, "r.npy"), mmap_mode="r")
+    Gs, prev, first = [], None, None
+    thr = [10 ** (k - 12) for k in range(18, 25)]
+    dec = [0] * len(thr)
+    for s in range(a, len(hi), BLK):
+        e = min(s + BLK, len(hi))
+        m = np.asarray(rr[s:e]) == STRAT
+        h = np.asarray(hi[s:e])[m].astype(np.int64)
+        l = np.asarray(lo[s:e])[m].astype(np.int64)
+        if len(h) == 0:
+            continue
+        for j, t in enumerate(thr):
+            dec[j] += int(np.sum(h < t))
+        if first is None:
+            first = float(h[0]) * SPLIT + float(l[0])
+        if prev is not None:
+            h = np.concatenate(([prev[0]], h)); l = np.concatenate(([prev[1]], l))
+        # in double precision: a gap of a sparse class can exceed the int64 range once scaled by 10^12
+        Gs.append((np.diff(h).astype(np.float64) * SPLIT + np.diff(l)).astype(np.float32))
+        prev = (h[-1], l[-1])
+    return np.concatenate(Gs), first, dec
+
+
 def load_observed():
     hi = np.load(os.path.join(DATA, "hi.npy"), mmap_mode="r")
     lo = np.load(os.path.join(DATA, "lo.npy"), mmap_mode="r")
     a = int(np.searchsorted(hi, np.uint64(10 ** 6)))          # first n >= 10^18
+    if STRAT is not None:
+        return load_stratum(hi, lo, a)
     N = len(hi) - a
     G = np.empty(N - 1, np.float32)
     for s in range(0, N - 1, BLK):
@@ -200,18 +231,77 @@ def ref_replicate(seed, M, first):
     return G
 
 
+class LazyGaps:
+    """The gaps of one realization, generated block by block on demand instead of stored.
+
+    Block bi of random numbers always comes from default_rng([seed, bi]), so any range of gaps
+    can be regenerated; the values are identical to those of ref_replicate and of the stored
+    unit-rate gaps (same seeds, same operations, same single-precision rounding)."""
+
+    def __init__(self, mode, seed, M):
+        self.mode, self.seed, self.M = mode, seed, M
+        self.cache = {}
+        if mode == "ref":
+            kn = np.load(os.path.join(OUT, "lambda_knots.npz"))
+            self.xk, self.Lk = kn["x"], kn["L"]
+            self.n_exp = M + 2
+            self.nblk = (self.n_exp + BLK - 1) // BLK
+            tot = 0.0; run = 0.0; self.offset = []
+            for bi in range(self.nblk):
+                e = self._exp(bi)
+                tot += e.sum()
+                self.offset.append(run)
+                run = (run + np.cumsum(e))[-1]
+            self.tot = tot
+
+    def __len__(self):
+        return self.M
+
+    def _exp(self, bi):
+        size = min(BLK, (self.n_exp if self.mode == "ref" else self.M) - bi * BLK)
+        return np.random.default_rng([self.seed, bi]).exponential(size=size)
+
+    def _block(self, bi):
+        """Gaps whose index lies in [bi*BLK, (bi+1)*BLK) for unit; for ref, the points of block bi."""
+        if bi in self.cache:
+            return self.cache[bi]
+        if len(self.cache) >= 3:
+            self.cache.pop(next(iter(self.cache)))
+        if self.mode == "unit":
+            v = self._exp(bi).astype(np.float32)
+        else:
+            gam = self.offset[bi] + np.cumsum(self._exp(bi))
+            if bi == self.nblk - 1:
+                gam = gam[:-1]
+            v = np.interp(gam / self.tot * self.Lk[-1], self.Lk, self.xk)
+        self.cache[bi] = v
+        return v
+
+    def _points(self, a, b):
+        """Points with exponential index a..b-1 (ref mode)."""
+        out = []
+        for bi in range(a // BLK, (b - 1) // BLK + 1):
+            v = self._block(bi)
+            out.append(v[max(a - bi * BLK, 0): min(b - bi * BLK, len(v))])
+        return np.concatenate(out)
+
+    def __getitem__(self, sl):
+        a, b = sl.start, min(sl.stop, self.M)
+        if self.mode == "unit":
+            out = []
+            for bi in range(a // BLK, (b - 1) // BLK + 1):
+                v = self._block(bi)
+                out.append(v[max(a - bi * BLK, 0): min(b - bi * BLK, len(v))])
+            return np.concatenate(out)
+        return np.diff(self._points(a, b + 1)).astype(np.float32)
+
+
 def work(task):
     mode, seed = task
     with open(os.path.join(OUT, "meta.json")) as fh:
         meta = json.load(fh)
     M, dec = meta["M"], meta["decade_bounds"]
-    if mode == "ref":
-        G = ref_replicate(seed, M, meta["first"])
-    else:
-        G = np.empty(M, np.float32)
-        for bi, s in enumerate(range(0, M, BLK)):
-            G[s:min(s + BLK, M)] = np.random.default_rng([seed, bi]).exponential(size=min(BLK, M - s))
-    return flat(statistics(G, dec, with_u=(mode == "ref")))
+    return flat(statistics(LazyGaps(mode, seed, M), dec, with_u=(mode == "ref")))
 
 
 def run_mc(mode, R, workers):
@@ -254,7 +344,7 @@ def prepare():
         json.dump(dict(M=M, N=M + 1, first=first, decade_bounds=dec, span=pos_run, Lambda_total=float(L[-1])), fh)
     obs = statistics(G, dec)
     np.save(os.path.join(OUT, "observed.npy"), flat(obs))
-    with open(os.path.join(RESULTS, "19_census_1e24_observed.json"), "w") as fh:
+    with open(os.path.join(RESULTS, f"19_census_1e24_observed{SUFFIX}.json"), "w") as fh:
         json.dump(dict(N=M + 1, decade_bounds=dec, observed=obs, elapsed_s=time.time() - t0), fh, indent=1)
     print(json.dumps(dict(N=M + 1, D_1000=obs["D_1000"], D_ratio=obs["D_ratio"], m_ratio=obs["m_ratio"],
                           rho_1_to_3=obs["rho"][:3]), indent=1), f"\n{time.time()-t0:.0f}s")
@@ -300,7 +390,7 @@ def report():
         print(lab, {k: (round(v['value'], 6), round(v['p'], 4), round(v['p_holm'], 4)) for k, v in out["by_range"][lab]["stats"].items()})
         print("   excess lag1 %.5f (z %.1f)  lag2 %.5f (z %.1f)" % (out["by_range"][lab]["excess"]["lag1"]["value"], out["by_range"][lab]["excess"]["lag1"]["z"],
                                                                   out["by_range"][lab]["excess"]["lag2"]["value"], out["by_range"][lab]["excess"]["lag2"]["z"]))
-    with open(os.path.join(RESULTS, "19_census_1e24_report.json"), "w") as fh:
+    with open(os.path.join(RESULTS, f"19_census_1e24_report{SUFFIX}.json"), "w") as fh:
         json.dump(out, fh, indent=1)
 
 

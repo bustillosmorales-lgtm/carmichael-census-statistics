@@ -1,0 +1,47 @@
+  multiscale 1/600 at 3s
+  multiscale 51/600 at 34s
+  multiscale 101/600 at 64s
+  multiscale 151/600 at 93s
+  multiscale 201/600 at 124s
+  multiscale 251/600 at 152s
+  multiscale 301/600 at 185s
+  multiscale 351/600 at 215s
+  multiscale 401/600 at 253s
+  multiscale 451/600 at 289s
+  multiscale 501/600 at 320s
+  multiscale 551/600 at 349s
+W=  100 S=20000 D=0.002959 null mean=0.002571 q95=0.003040 p=0.0840 holm=0.2519
+W= 1000 S= 2000 D=0.000723 null mean=0.000658 q95=0.000992 p=0.3203 holm=0.6407
+W= 5000 S= 1000 D=0.000673 null mean=0.001120 q95=0.001523 p=0.9845 holm=0.9845
+  decades 1/1200 at 379s
+  decades 51/1200 at 380s
+  decades 101/1200 at 382s
+  decades 151/1200 at 383s
+  decades 201/1200 at 385s
+  decades 251/1200 at 386s
+  decades 301/1200 at 388s
+  decades 351/1200 at 390s
+  decades 401/1200 at 391s
+  decades 451/1200 at 394s
+  decades 501/1200 at 396s
+  decades 551/1200 at 399s
+  decades 601/1200 at 401s
+  decades 651/1200 at 407s
+  decades 701/1200 at 412s
+  decades 751/1200 at 417s
+  decades 801/1200 at 423s
+  decades 851/1200 at 433s
+  decades 901/1200 at 444s
+  decades 951/1200 at 455s
+  decades 1001/1200 at 467s
+  decades 1051/1200 at 492s
+  decades 1101/1200 at 516s
+  decades 1151/1200 at 539s
+1e12-1e13 n=  11038 D_1000=0.005606 p=0.745 holm=1.000  D_ratio=0.008196 p=0.509 holm=1.000  m_ratio=0.385750 p=0.840 holm=1.000
+1e13-1e14 n=  25427 D_1000=0.005945 p=0.146 holm=0.879  D_ratio=0.002782 p=0.995 holm=1.000  m_ratio=0.386690 p=0.865 holm=1.000
+1e14-1e15 n=  60506 D_1000=0.002606 p=0.654 holm=1.000  D_ratio=0.002390 p=0.901 holm=1.000  m_ratio=0.387183 p=0.466 holm=1.000
+1e15-1e16 n= 141471 D_1000=0.001253 p=0.948 holm=1.000  D_ratio=0.001582 p=0.898 holm=1.000  m_ratio=0.386375 p=0.921 holm=1.000
+1e16-1e17 n= 338672 D_1000=0.001587 p=0.196 holm=0.980  D_ratio=0.001111 p=0.846 holm=1.000  m_ratio=0.386102 p=0.736 holm=1.000
+1e17-1e18 n= 816289 D_1000=0.000811 p=0.542 holm=1.000  D_ratio=0.000956 p=0.510 holm=1.000  m_ratio=0.386320 p=0.951 holm=1.000
+lattice {'D_1000': (0.4822, 0.0005), 'D_ratio': (0.7373, 0.0005), 'm_ratio': (0.8485, 0.0005), 'D_cf': (0.288, 0.0005), 'Q_10': (549.9279, 0.0005)}
+done in 567s

@@ -18,6 +18,7 @@ Part D, size of the procedure: the true process has the smooth mean measure C0 o
         quantile of each generator is the actual level of the test at nominal level 0.05.
 
 Usage: python code/12_validation.py [R_partD] [workers]
+       python code/12_validation.py abc     (parts A-C only, part D kept from results/12_validation.json)
 """
 import json, os, sys, time
 from multiprocessing import Pool
@@ -29,7 +30,8 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import benchmark as B
 from common import RESULTS, census_cache
 
-R_D = int(sys.argv[1]) if len(sys.argv) > 1 else 1000
+ONLY_ABC = len(sys.argv) > 1 and sys.argv[1] == "abc"     # rerun parts A-C and keep the stored part D
+R_D = int(sys.argv[1]) if len(sys.argv) > 1 and not ONLY_ABC else 1000
 WORKERS = int(sys.argv[2]) if len(sys.argv) > 2 else 14
 SEED = 20261010
 report = {}
@@ -77,6 +79,11 @@ def part_b(rng):
     D = [B.sup_dev(rng.exponential(size=2000), B.exp_cdf) for _ in range(2000)]
     p = ss.kstest(D, ss.kstwo(2000).cdf).pvalue
     check("B4 supremum distance follows the Kolmogorov law", p > 0.001, f"KS p = {p:.3f}")
+    # the same check over 20,000 replicates, from a dedicated stream so that the draws of part C are unchanged
+    r4 = np.random.default_rng(SEED + 4)
+    D = [B.sup_dev(r4.exponential(size=2000), B.exp_cdf) for _ in range(20000)]
+    p = ss.kstest(D, ss.kstwo(2000).cdf).pvalue
+    check("B4b supremum distance follows the Kolmogorov law, 20,000 replicates", p > 0.001, f"KS p = {p:.3f}")
 
 
 def thinning(a, theta, x0, x1, rng):
@@ -193,8 +200,13 @@ def main():
     t0 = time.time()
     rng = np.random.default_rng(SEED)
     part_a(rng); part_b(rng); part_c(rng)
-    report["partD"] = part_d()
-    report["R_partD"] = R_D
+    if ONLY_ABC:
+        with open(os.path.join(RESULTS, "12_validation.json")) as fh:
+            old = json.load(fh)
+        report["partD"], report["R_partD"] = old["partD"], old["R_partD"]
+    else:
+        report["partD"] = part_d()
+        report["R_partD"] = R_D
     report["elapsed_s"] = time.time() - t0
     with open(os.path.join(RESULTS, "12_validation.json"), "w") as fh:
         json.dump(report, fh, indent=1)

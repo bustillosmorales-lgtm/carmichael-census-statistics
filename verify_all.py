@@ -140,5 +140,10 @@ check("item iii without solution", 1113, i3["empty"])
 check("item iii admissible and all occur", (118, 118), (i3["admissible"], i3["occurring"]))
 check("item iii at most one class", 1, i3["max_classes"])
 
+print("\n--- second revision ---")
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import verify_r2
+verify_r2.run(check)
+
 print("\nALL QUOTED NUMBERS MATCH" if ok_all else "\nSOME QUOTED NUMBERS DIFFER")
 sys.exit(0 if ok_all else 1)

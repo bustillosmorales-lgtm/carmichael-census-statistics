@@ -2,3 +2,6 @@ data/*.gz
 data/*.html
 results/census.npz
 __pycache__/
+results/*.err
+results/14_power_parts/
+tools/*.ps1

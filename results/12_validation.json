@@ -1,0 +1,402 @@
+{
+ "A1 supremum distance = scipy.stats.kstest": {
+  "ok": true,
+  "detail": "0.007801333070 vs 0.007801333070"
+ },
+ "A2 rank autocorrelation ~ scipy.stats.spearmanr": {
+  "ok": true,
+  "detail": "max diff 1.43e-05 (differs by O(h/N) edge terms)"
+ },
+ "A3 moving mean = naive loop": {
+  "ok": true,
+  "detail": "max diff 5.3e-14"
+ },
+ "A4 gap ratio": {
+  "ok": true,
+  "detail": "[0.6, 0.4, 1.0]"
+ },
+ "A5 inversion of a piecewise-linear cumulative intensity": {
+  "ok": true,
+  "detail": "[0.5, 2.0]"
+ },
+ "B1 mean ratio = 2 log 2 - 1": {
+  "ok": true,
+  "detail": "0.38650 vs 0.38629 (se 0.00028)"
+ },
+ "B2 ratio law 2x/(1+x)": {
+  "ok": true,
+  "detail": "KS p = 0.239"
+ },
+ "B3 interval counts: variance/mean = 1": {
+  "ok": true,
+  "detail": "1.0017 over 200272 intervals of length 5"
+ },
+ "B4 supremum distance follows the Kolmogorov law": {
+  "ok": true,
+  "detail": "KS p = 0.047"
+ },
+ "B4b supremum distance follows the Kolmogorov law, 20,000 replicates": {
+  "ok": true,
+  "detail": "KS p = 0.185"
+ },
+ "C1 [inversion] total count Poisson(Lambda)": {
+  "ok": true,
+  "detail": "47261 vs 47169 (z=+0.42)"
+ },
+ "C2 [inversion] time-rescaled gaps Exp(1)": {
+  "ok": true,
+  "detail": "KS p = 0.797"
+ },
+ "C3 [inversion] counts in 60 intervals Poisson with mean dLambda": {
+  "ok": true,
+  "detail": "chi2 = 62.5 on 60 df, p = 0.388"
+ },
+ "C4 [inversion] independent increments (adjacent counts uncorrelated)": {
+  "ok": true,
+  "detail": "corr = +0.0574, bound 0.1303"
+ },
+ "C1 [thinning] total count Poisson(Lambda)": {
+  "ok": true,
+  "detail": "47018 vs 47169 (z=-0.70)"
+ },
+ "C2 [thinning] time-rescaled gaps Exp(1)": {
+  "ok": true,
+  "detail": "KS p = 0.666"
+ },
+ "C3 [thinning] counts in 60 intervals Poisson with mean dLambda": {
+  "ok": true,
+  "detail": "chi2 = 59.7 on 60 df, p = 0.486"
+ },
+ "C4 [thinning] independent increments (adjacent counts uncorrelated)": {
+  "ok": true,
+  "detail": "corr = +0.0328, bound 0.1303"
+ },
+ "C5 inversion and thinning give the same rescaled-gap law": {
+  "ok": true,
+  "detail": "two-sample KS p = 0.859"
+ },
+ "partD": {
+  "D_100": {
+   "inverse": {
+    "ks_p": 0.09710349657052789,
+    "ks_D": 0.055,
+    "level": 0.039,
+    "level_ci": [
+     0.027877148795336436,
+     0.05293093578544508
+    ],
+    "mean_ratio": 1.0103297510131148
+   },
+   "nested": {
+    "ks_p": 0.014870029418858987,
+    "ks_D": 0.07,
+    "level": 0.047,
+    "level_ci": [
+     0.03473506226679538,
+     0.06201263069307138
+    ],
+    "mean_ratio": 1.0083739528977278
+   },
+   "rank": {
+    "ks_p": 0.5728904395829821,
+    "ks_D": 0.035,
+    "level": 0.05,
+    "level_ci": [
+     0.03733539760466064,
+     0.06539048791549366
+    ],
+    "mean_ratio": 1.001167459368732
+   }
+  },
+  "D_1000": {
+   "inverse": {
+    "ks_p": 3.042740004182204e-08,
+    "ks_D": 0.134,
+    "level": 0.017,
+    "level_ci": [
+     0.009933512592716534,
+     0.02707949686480761
+    ],
+    "mean_ratio": 1.070991755985584
+   },
+   "nested": {
+    "ks_p": 3.042740004182204e-08,
+    "ks_D": 0.134,
+    "level": 0.023,
+    "level_ci": [
+     0.014634582324915497,
+     0.03431233761260076
+    ],
+    "mean_ratio": 1.0758016201392515
+   },
+   "rank": {
+    "ks_p": 2.461977466455732e-07,
+    "ks_D": 0.126,
+    "level": 0.023,
+    "level_ci": [
+     0.014634582324915497,
+     0.03431233761260076
+    ],
+    "mean_ratio": 1.0725097730642434
+   }
+  },
+  "D_5000": {
+   "inverse": {
+    "ks_p": 9.967157593572164e-283,
+    "ks_D": 0.759,
+    "level": 0.744,
+    "level_ci": [
+     0.715757169898992,
+     0.7707982136155876
+    ],
+    "mean_ratio": 0.5770693115125778
+   },
+   "nested": {
+    "ks_p": 5.249252134161708e-295,
+    "ks_D": 0.773,
+    "level": 0.745,
+    "level_ci": [
+     0.7167888393032091,
+     0.7717605799980951
+    ],
+    "mean_ratio": 0.5693840098169038
+   },
+   "rank": {
+    "ks_p": 1.0977266965700495e-271,
+    "ks_D": 0.746,
+    "level": 0.704,
+    "level_ci": [
+     0.6746356465953093,
+     0.7321578024801108
+    ],
+    "mean_ratio": 0.5783299265982829
+   }
+  },
+  "D_20000": {
+   "inverse": {
+    "ks_p": 0.0,
+    "ks_D": 0.998,
+    "level": 1.0,
+    "level_ci": [
+     0.9963179161033608,
+     1.0
+    ],
+    "mean_ratio": 0.5366447209033063
+   },
+   "nested": {
+    "ks_p": 0.0,
+    "ks_D": 1.0,
+    "level": 1.0,
+    "level_ci": [
+     0.9963179161033608,
+     1.0
+    ],
+    "mean_ratio": 0.4145535259458135
+   },
+   "rank": {
+    "ks_p": 0.0,
+    "ks_D": 0.989,
+    "level": 0.999,
+    "level_ci": [
+     0.9944410757201502,
+     0.9999746825125083
+    ],
+    "mean_ratio": 0.6018016750331372
+   }
+  },
+  "D_ratio": {
+   "inverse": {
+    "ks_p": 0.5005673707894058,
+    "ks_D": 0.037,
+    "level": 0.057,
+    "level_ci": [
+     0.0434535819369586,
+     0.07322272946066255
+    ],
+    "mean_ratio": 0.9916710028682872
+   },
+   "nested": {
+    "ks_p": 0.19957365535779528,
+    "ks_D": 0.048,
+    "level": 0.057,
+    "level_ci": [
+     0.0434535819369586,
+     0.07322272946066255
+    ],
+    "mean_ratio": 0.9728189215632828
+   },
+   "rank": {
+    "ks_p": 0.6854967337920594,
+    "ks_D": 0.032,
+    "level": 0.049,
+    "level_ci": [
+     0.03646705917195327,
+     0.06426605314016967
+    ],
+    "mean_ratio": 1.0102030873458976
+   }
+  },
+  "m_ratio": {
+   "inverse": {
+    "ks_p": 0.6854967337920594,
+    "ks_D": 0.032,
+    "level": 0.04,
+    "level_ci": [
+     0.028727625285890797,
+     0.05407269681936851
+    ],
+    "mean_ratio": 0.9999918266382081
+   },
+   "nested": {
+    "ks_p": 0.8595454206943325,
+    "ks_D": 0.027,
+    "level": 0.057,
+    "level_ci": [
+     0.0434535819369586,
+     0.07322272946066255
+    ],
+    "mean_ratio": 0.9999852299119101
+   },
+   "rank": {
+    "ks_p": 0.6101664688189142,
+    "ks_D": 0.034,
+    "level": 0.039,
+    "level_ci": [
+     0.027877148795336436,
+     0.05293093578544508
+    ],
+    "mean_ratio": 0.9999972697612268
+   }
+  },
+  "rho_1": {
+   "inverse": {
+    "ks_p": 0.647814872077161,
+    "ks_D": 0.033,
+    "level": 0.059,
+    "level_ci": [
+     0.04521335440279658,
+     0.07544907308424087
+    ],
+    "mean_ratio": 0.9999484782558706
+   },
+   "nested": {
+    "ks_p": 0.18116454248303263,
+    "ks_D": 0.049,
+    "level": 0.046,
+    "level_ci": [
+     0.033871498547677965,
+     0.06088355271374264
+    ],
+    "mean_ratio": 1.0002144184453752
+   },
+   "rank": {
+    "ks_p": 0.28779764348473313,
+    "ks_D": 0.044,
+    "level": 0.06,
+    "level_ci": [
+     0.04609503542248429,
+     0.07656049040407743
+    ],
+    "mean_ratio": 1.0002068274082843
+   }
+  },
+  "rho_2": {
+   "inverse": {
+    "ks_p": 0.5728904395829821,
+    "ks_D": 0.035,
+    "level": 0.068,
+    "level_ci": [
+     0.05318809976060334,
+     0.08541305019143852
+    ],
+    "mean_ratio": -6.301580279695459
+   },
+   "nested": {
+    "ks_p": 0.9542189106778983,
+    "ks_D": 0.023,
+    "level": 0.06,
+    "level_ci": [
+     0.04609503542248429,
+     0.07656049040407743
+    ],
+    "mean_ratio": 6.775001537116746
+   },
+   "rank": {
+    "ks_p": 0.5728904395829821,
+    "ks_D": 0.035,
+    "level": 0.062,
+    "level_ci": [
+     0.04786184811336095,
+     0.0787799496610601
+    ],
+    "mean_ratio": 9.297419781093318
+   }
+  },
+  "urho_1": {
+   "inverse": {
+    "ks_p": 1.035413447317725e-09,
+    "ks_D": 0.146,
+    "level": 0.07,
+    "level_ci": [
+     0.05497152491916993,
+     0.08761623348928503
+    ],
+    "mean_ratio": 1.7177195245176817
+   },
+   "nested": {
+    "ks_p": 2.6860351639888324e-12,
+    "ks_D": 0.165,
+    "level": 0.075,
+    "level_ci": [
+     0.059446128210995375,
+     0.09310844696149953
+    ],
+    "mean_ratio": 1.762254401374461
+   },
+   "rank": {
+    "ks_p": 3.6066664818887265e-11,
+    "ks_D": 0.157,
+    "level": 0.078,
+    "level_ci": [
+     0.06214121313271404,
+     0.09639363340258307
+    ],
+    "mean_ratio": 1.718123243592589
+   }
+  },
+  "urho_2": {
+   "inverse": {
+    "ks_p": 8.685223195188911e-14,
+    "ks_D": 0.175,
+    "level": 0.078,
+    "level_ci": [
+     0.06214121313271404,
+     0.09639363340258307
+    ],
+    "mean_ratio": 1.7541979906300174
+   },
+   "nested": {
+    "ks_p": 5.205457009939086e-12,
+    "ks_D": 0.163,
+    "level": 0.056,
+    "level_ci": [
+     0.04257554968641811,
+     0.0721077462832996
+    ],
+    "mean_ratio": 1.6962745130393682
+   },
+   "rank": {
+    "ks_p": 2.332572779609904e-16,
+    "ks_D": 0.191,
+    "level": 0.061,
+    "level_ci": [
+     0.046977875541079725,
+     0.07767077404914056
+    ],
+    "mean_ratio": 1.7667601781038673
+   }
+  }
+ },
+ "R_partD": 1000,
+ "elapsed_s": 2.1375796794891357
+}

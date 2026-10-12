@@ -1,0 +1,29 @@
+[PASS] A1 supremum distance = scipy.stats.kstest: 0.007801333070 vs 0.007801333070
+[PASS] A2 rank autocorrelation ~ scipy.stats.spearmanr: max diff 1.43e-05 (differs by O(h/N) edge terms)
+[PASS] A3 moving mean = naive loop: max diff 5.3e-14
+[PASS] A4 gap ratio: [0.6, 0.4, 1.0]
+[PASS] A5 inversion of a piecewise-linear cumulative intensity: [0.5, 2.0]
+[PASS] B1 mean ratio = 2 log 2 - 1: 0.38650 vs 0.38629 (se 0.00028)
+[PASS] B2 ratio law 2x/(1+x): KS p = 0.239
+[PASS] B3 interval counts: variance/mean = 1: 1.0017 over 200272 intervals of length 5
+[PASS] B4 supremum distance follows the Kolmogorov law: KS p = 0.047
+[PASS] C1 [inversion] total count Poisson(Lambda): 47261 vs 47169 (z=+0.42)
+[PASS] C2 [inversion] time-rescaled gaps Exp(1): KS p = 0.797
+[PASS] C3 [inversion] counts in 60 intervals Poisson with mean dLambda: chi2 = 62.5 on 60 df, p = 0.388
+[PASS] C4 [inversion] independent increments (adjacent counts uncorrelated): corr = +0.0574, bound 0.1303
+[PASS] C1 [thinning] total count Poisson(Lambda): 47018 vs 47169 (z=-0.70)
+[PASS] C2 [thinning] time-rescaled gaps Exp(1): KS p = 0.666
+[PASS] C3 [thinning] counts in 60 intervals Poisson with mean dLambda: chi2 = 59.7 on 60 df, p = 0.486
+[PASS] C4 [thinning] independent increments (adjacent counts uncorrelated): corr = +0.0328, bound 0.1303
+[PASS] C5 inversion and thinning give the same rescaled-gap law: two-sample KS p = 0.859
+D D_100    inverse: level=0.039 [0.028,0.053] KS p=0.097  nested: level=0.047 [0.035,0.062] KS p=0.015  rank: level=0.050 [0.037,0.065] KS p=0.573
+D D_1000   inverse: level=0.017 [0.010,0.027] KS p=0.000  nested: level=0.023 [0.015,0.034] KS p=0.000  rank: level=0.023 [0.015,0.034] KS p=0.000
+D D_5000   inverse: level=0.744 [0.716,0.771] KS p=0.000  nested: level=0.745 [0.717,0.772] KS p=0.000  rank: level=0.704 [0.675,0.732] KS p=0.000
+D D_20000  inverse: level=1.000 [0.996,1.000] KS p=0.000  nested: level=1.000 [0.996,1.000] KS p=0.000  rank: level=0.999 [0.994,1.000] KS p=0.000
+D D_ratio  inverse: level=0.057 [0.043,0.073] KS p=0.501  nested: level=0.057 [0.043,0.073] KS p=0.200  rank: level=0.049 [0.036,0.064] KS p=0.685
+D m_ratio  inverse: level=0.040 [0.029,0.054] KS p=0.685  nested: level=0.057 [0.043,0.073] KS p=0.860  rank: level=0.039 [0.028,0.053] KS p=0.610
+D rho_1    inverse: level=0.059 [0.045,0.075] KS p=0.648  nested: level=0.046 [0.034,0.061] KS p=0.181  rank: level=0.060 [0.046,0.077] KS p=0.288
+D rho_2    inverse: level=0.068 [0.053,0.085] KS p=0.573  nested: level=0.060 [0.046,0.077] KS p=0.954  rank: level=0.062 [0.048,0.079] KS p=0.573
+D urho_1   inverse: level=0.070 [0.055,0.088] KS p=0.000  nested: level=0.075 [0.059,0.093] KS p=0.000  rank: level=0.078 [0.062,0.096] KS p=0.000
+D urho_2   inverse: level=0.078 [0.062,0.096] KS p=0.000  nested: level=0.056 [0.043,0.072] KS p=0.000  rank: level=0.061 [0.047,0.078] KS p=0.000
+done in 4060s; failures: none

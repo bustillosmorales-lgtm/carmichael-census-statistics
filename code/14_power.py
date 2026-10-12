@@ -116,20 +116,27 @@ def work(task):
 
 
 def main():
+    """Each setting is saved to results/14_power_parts/ as soon as it is complete, and settings
+    already saved are skipped, so that an interrupted run resumes where it stopped. The seeds
+    of a setting do not depend on which settings were run before it."""
     t0 = time.time()
-    seq = np.random.SeedSequence(SEED)
-    tasks = []
-    for fam, vals in GRID.items():
-        for a in vals:
-            for c in seq.spawn(R // 25):
-                tasks.append((fam, a, c.generate_state(1)[0], 25))
+    parts = os.path.join(RESULTS, "14_power_parts")
+    os.makedirs(parts, exist_ok=True)
     acc = {}
     with Pool(WORKERS) as pool:
-        for i, (fam, a, arr) in enumerate(pool.imap_unordered(work, tasks)):
-            acc.setdefault(f"{fam}|{a}", []).append(arr)
-            if i % 100 == 0:
-                print(f"  {i+1}/{len(tasks)} chunks at {time.time()-t0:.0f}s", flush=True)
-    acc = {k: np.vstack(v) for k, v in acc.items()}
+        for k, (fam, vals) in enumerate(GRID.items()):
+            for j, a in enumerate(vals):
+                key = f"{fam}|{a}"
+                path = os.path.join(parts, f"{fam}_{a}.npy")
+                if os.path.exists(path):
+                    acc[key] = np.load(path)
+                    continue
+                seq = np.random.SeedSequence([SEED, k, j])
+                tasks = [(fam, a, c.generate_state(1)[0], 25) for c in seq.spawn(R // 25)]
+                arr = np.vstack([x[2] for x in pool.imap_unordered(work, tasks)])
+                np.save(path, arr)
+                acc[key] = arr
+                print(f"  {key} done at {time.time()-t0:.0f}s", flush=True)
     np.savez_compressed(os.path.join(RESULTS, "14_power.npz"), names=np.array(B.STAT_NAMES), **acc)
     with open(os.path.join(RESULTS, "14_power.json"), "w") as fh:
         json.dump(dict(R=R, seed=SEED, S=S, grid=GRID, elapsed_s=time.time() - t0), fh, indent=1)
