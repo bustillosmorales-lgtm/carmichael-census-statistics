@@ -17,8 +17,8 @@ Part D, size of the procedure: the true process has the smooth mean measure C0 o
         distort the null distribution; the rejection rate of the true process against the 95%
         quantile of each generator is the actual level of the test at nominal level 0.05.
 
-Usage: python code/12_validation.py [R_partD] [workers]
-       python code/12_validation.py abc     (parts A-C only, part D kept from results/12_validation.json)
+Usage: python code/12_validation.py [R_partD] [workers] [R_partE]
+       python code/12_validation.py abc     (parts A-C, part D summarized from results/12_validation_partD.npz)
 """
 import json, os, sys, time
 from multiprocessing import Pool
@@ -30,9 +30,11 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import benchmark as B
 from common import RESULTS, census_cache
 
-ONLY_ABC = len(sys.argv) > 1 and sys.argv[1] == "abc"     # rerun parts A-C and keep the stored part D
+ONLY_ABC = len(sys.argv) > 1 and sys.argv[1] == "abc"     # rerun parts A-C, summarize the stored part D, keep part E
 R_D = int(sys.argv[1]) if len(sys.argv) > 1 and not ONLY_ABC else 1000
-WORKERS = int(sys.argv[2]) if len(sys.argv) > 2 else 14
+R_E = int(sys.argv[3]) if len(sys.argv) > 3 else 1000
+K_E = 40
+WORKERS = int(sys.argv[2]) if len(sys.argv) > 2 and not ONLY_ABC else 14
 SEED = 20261010
 report = {}
 
@@ -173,15 +175,28 @@ def part_d():
             draws[kind].append(arr)
     draws = {k: np.vstack(v) for k, v in draws.items()}
     np.savez_compressed(os.path.join(RESULTS, "12_validation_partD.npz"), names=np.array(B.STAT_NAMES), **draws)
+    return summarize_d(draws)
+
+
+def summarize_d(draws):
+    """Actual level of each statistic. Q_10 is the sum over lags 1 to 10 of the squared standardized
+    autocorrelations, standardized by the mean and standard deviation of each generator, as in the
+    analysis of the census; D_cf here averages five labelings (part E uses 40)."""
+    names = list(B.STAT_NAMES)
+    idx = [names.index(f"rho_{h}") for h in range(1, 11)]
+    cols = {name: j for j, name in enumerate(names)
+            if not (name.startswith("rho_") and int(name[4:]) > 2) and not name.startswith("urho")}
     res = {}
-    for j, name in enumerate(B.STAT_NAMES):
-        if name == "D_cf" or name.startswith("rho_") and int(name[4:]) > 2:
-            continue
+    for name in list(cols) + ["Q_10"]:
         two = name in B.TWO_SIDED
-        t = draws["true"][:, j]
         row = {}
         for k in ("inverse", "nested", "rank"):
-            d = draws[k][:, j]
+            if name == "Q_10":
+                mu, sd = draws[k][:, idx].mean(0), draws[k][:, idx].std(0, ddof=1)
+                t = (((draws["true"][:, idx] - mu) / sd) ** 2).sum(1)
+                d = (((draws[k][:, idx] - mu) / sd) ** 2).sum(1)
+            else:
+                t, d = draws["true"][:, cols[name]], draws[k][:, cols[name]]
             ks = ss.ks_2samp(t, d)
             if two:
                 c = d.mean(); level = float(np.mean(np.abs(t - c) >= np.quantile(np.abs(d - c), 0.95)))
@@ -196,6 +211,54 @@ def part_d():
     return res
 
 
+# ---------------------------------------------------------------- part E: D_cf with 40 labelings
+def work_e(task):
+    kind, seed, reps = task
+    rng = np.random.default_rng(seed)
+    xk, Lk, N = _true_measure()
+    base = _true_realization(xk, Lk, N, np.random.default_rng(SEED))
+    xs, Ls = B.cumulative_intensity(base, 20000)
+    m = B.rollmean(np.diff(base), 20000)
+    out = []
+    for _ in range(reps):
+        if kind == "true":
+            g = B.gen_inverse(xk, Lk, N, rng)
+        elif kind == "inverse":
+            g = B.gen_inverse(xs, Ls, N, rng)
+        elif kind == "nested":
+            pilot = base[0] + np.concatenate(([0.0], np.cumsum(B.gen_inverse(xs, Ls, N, rng))))
+            x2, L2 = B.cumulative_intensity(pilot, 20000)
+            g = B.gen_inverse(x2, L2, N, rng)
+        else:
+            g = B.gen_rank(m, rng)
+        out.append(B.cross_fit(g, rng, splits=K_E))
+    return kind, np.array(out)
+
+
+def part_e():
+    """Actual level of D_cf with the 40 labelings of the primary analysis, as in part D."""
+    path = os.path.join(RESULTS, "12_validation_partE.npz")
+    seq = np.random.SeedSequence(SEED + 5)
+    tasks = [(kind, c.generate_state(1)[0], 25) for kind in ("true", "inverse", "nested", "rank")
+             for c in seq.spawn(R_E // 25)]
+    draws = {k: [] for k in ("true", "inverse", "nested", "rank")}
+    with Pool(WORKERS) as pool:
+        for kind, arr in pool.imap_unordered(work_e, tasks):
+            draws[kind].append(arr)
+    draws = {k: np.concatenate(v) for k, v in draws.items()}
+    np.savez_compressed(path, **draws)
+    t = draws["true"]
+    row = {}
+    for k in ("inverse", "nested", "rank"):
+        d = draws[k]
+        level = float(np.mean(t >= np.quantile(d, 0.95)))
+        lo, hi = ss.binomtest(int(round(level * len(t))), len(t)).proportion_ci(method="exact")
+        row[k] = dict(level=level, level_ci=[float(lo), float(hi)], null_mean=float(d.mean()), true_mean=float(t.mean()))
+    print("E D_cf(40) " + "  ".join(f"{k}: level={row[k]['level']:.3f} [{row[k]['level_ci'][0]:.3f},{row[k]['level_ci'][1]:.3f}]"
+                                   for k in row), flush=True)
+    return dict(K=K_E, R=R_E, D_cf=row)
+
+
 def main():
     t0 = time.time()
     rng = np.random.default_rng(SEED)
@@ -203,10 +266,14 @@ def main():
     if ONLY_ABC:
         with open(os.path.join(RESULTS, "12_validation.json")) as fh:
             old = json.load(fh)
-        report["partD"], report["R_partD"] = old["partD"], old["R_partD"]
+        z = np.load(os.path.join(RESULTS, "12_validation_partD.npz"))
+        report["partD"], report["R_partD"] = summarize_d({k: z[k] for k in ("true", "inverse", "nested", "rank")}), old["R_partD"]
+        if "partE" in old:
+            report["partE"] = old["partE"]
     else:
         report["partD"] = part_d()
         report["R_partD"] = R_D
+        report["partE"] = part_e()
     report["elapsed_s"] = time.time() - t0
     with open(os.path.join(RESULTS, "12_validation.json"), "w") as fh:
         json.dump(report, fh, indent=1)

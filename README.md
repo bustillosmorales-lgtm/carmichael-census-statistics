@@ -66,7 +66,8 @@ last argument otherwise, is the number of worker processes):
 ```
 python code/11_reference_model.py 2000 2000 1000 3
 python code/11b_primary_family.py 2000 3 40
-python code/12_validation.py 1000 3
+python code/05b_interval_counts_inversion.py 200 3 50 20
+python code/12_validation.py 1000 3 1000
 python code/13_resolution_rule.py 400 3
 python code/14_power.py 1000 3
 python code/14b_power_table.py
@@ -74,11 +75,14 @@ python code/15_dependence.py 1000 3
 python code/16_digits_bootstrap.py
 python code/17_strata_factor_count.py 1000 3
 python code/20_secondary_inversion.py 2000 3
+python code/25_sensitivity_inversion.py 2000 3
 python code/21_figures_r2.py
 python code/18_census_1e24_prepare.py DATA_DIR
 python code/19_census_1e24_analysis.py prepare DATA_DIR
-python code/19_census_1e24_analysis.py ref 200 2 DATA_DIR
 python code/19_census_1e24_analysis.py unit 1000 2 DATA_DIR
+python code/19_census_1e24_analysis.py ref 200 2 DATA_DIR
+python code/19_census_1e24_analysis.py report DATA_DIR   # the confirmatory analysis with R = 200, as in the plan
+python code/19_census_1e24_analysis.py ref 1000 2 DATA_DIR   # extends the same seed sequence to R = 1,000
 python code/19_census_1e24_analysis.py report DATA_DIR
 #   the same four steps with r=K before DATA_DIR, for K = 3..12, give the analysis by number of prime factors
 python code/22_digits_1e24.py 100000 DATA_DIR
@@ -113,7 +117,8 @@ The table above follows the numbering of the first revision. For the second revi
 | `benchmark.py` | Sections 2.2 to 2.6 | generators of the reference model (inversion, nested, rank-indexed), the statistics, the slow-variation quantity |
 | `11_reference_model.py` | Sections 2.2 and 3.4, Table 7 | the three generators compared on the census below 10^18 |
 | `11b_primary_family.py` | Section 3.3, Table 6 | primary family, Holm and Westfall–Young adjustments, D_cf with 40 labelings |
-| `12_validation.py` | Sections 2.5 and 3.1, Table 2 | unit tests, known homogeneous and inhomogeneous processes, actual level of each test |
+| `05b_interval_counts_inversion.py` | Section 3.2, Table 5 | interval counts against the reference model by inversion, calibrated on known Poisson processes |
+| `12_validation.py` | Sections 2.5 and 3.1, Table 2 | unit tests, known homogeneous and inhomogeneous processes, actual level of each test, D_cf with 40 labelings |
 | `13_resolution_rule.py` | Section 3.1, Table 3 | actual level of D_W over the grid of resolutions S, and the window rule |
 | `14_power.py`, `14b_power_table.py` | Sections 2.6 and 3.6, Figure 2, Table A1 | power over eight families with exact binomial intervals |
 | `15_dependence.py` | Section 3.5, Figure 1 | profile of excess autocorrelations at lags 1 to 50 with simultaneous bands, Q_10, Q_50 |
@@ -126,6 +131,7 @@ The table above follows the numbering of the first revision. For the second revi
 | `22_digits_1e24.py` | Section 4.1, Table 13 | leading digits from 10^18 to 10^24 |
 | `23_slow_variation_1e24.py` | Section 3.7, Table 11 | slow-variation condition by class and decade from 10^18 to 10^24 |
 | `24_multiplicity_by_r.py` | Section 3.7 | multiplicity over the classes and their decades from 10^18 to 10^24 |
+| `25_sensitivity_inversion.py` | Section 3.4 | sensitivity to the resolution S and normalization by the counting function, with the generator by inversion |
 
 ## Random seeds
 
@@ -134,7 +140,7 @@ All simulations use NumPy `default_rng` with fixed seeds written at the top of e
 seeds 0 to 4 (`05`, following the original analysis), 20260916 (`06`), 20260918 (`10`).
 Second revision: 20261008 (`11`), 20261016 (`11b`), 20261010 and 20261014 for the 20,000-replicate
 check (`12`), 20261011 (`13`, `20`, `22`), 20261012 (`14`), 20261015 (`15`), 20261009 (`16`),
-20261014 (`17`), 20261013 (`19`).
+20261014 (`17`), 20261013 (`19`), 20261017 (`25`), 20261018 and 20261019 (`05b`), 20261015 for part E (`12`).
 
 ## License
 
