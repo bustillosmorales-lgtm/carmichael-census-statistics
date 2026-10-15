@@ -45,6 +45,15 @@ def run(check):
     same("2.3 D_cf level lowest (%)", "26", 100 * min(lv)); same("2.3 D_cf level highest (%)", "31", 100 * max(lv))
     same("2.3 D_cf null mean under the reference model", "0.00118", ve["D_cf"]["inverse"]["null_mean"])
     same("2.3 D_cf mean under the true process", "0.00127", ve["D_cf"]["inverse"]["true_mean"])
+    l5 = [v["D_cf"][g]["level"] for g in ("inverse", "nested", "rank")]
+    same("3.1 D_cf five labelings level lowest", "0.12", min(l5)); same("3.1 D_cf five labelings level highest", "0.14", max(l5))
+    check("3.3 census D_cf below the true-process mean", True, J("11b_primary_family.json")["family"]["D_cf"]["obs"] < ve["D_cf"]["inverse"]["true_mean"])
+    r3a = J("19_census_1e24_report_r3_R200.json")["by_range"]["all"]["stats"]["D_1000"]
+    same("3.7 r=3 D_1000 p with R=200", "0.010", r3a["p"]); same("3.7 r=3 D_1000 Holm with R=200", "0.050", r3a["p_holm"])
+    b2 = J("19_census_1e24_report_R200.json")["by_range"]
+    m2 = min((b2[k]["stats"][n]["p"], k, n, b2[k]["stats"][n]["p_holm"]) for k in b2 if k != "all" for n in b2[k]["stats"])
+    same("3.7 smallest decade p with R=200", "0.031", m2[0]); same("3.7 its Holm with R=200", "0.155", m2[3])
+    check("3.7 same cell with R=200", ("1e22-1e23", "Q_10"), m2[1:3])
 
     # ---------------------------------------------------------------- Table 3, resolution rule
     rr = J("13_resolution_rule.json")
