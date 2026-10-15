@@ -36,6 +36,15 @@ def run(check):
     for row, name in zip(Q["tab:level"], names):
         for cell, gen in zip(row[1:], ("inverse", "nested", "rank")):
             interval(f"T2 level {name} {gen}", cell, v[name][gen]["level"], v[name][gen]["level_ci"])
+    ve = J("12_validation.json")["partE"]
+    check("T2 D_cf row present", True, "D_{cf}" in Q["tab:level"][8][0])
+    check("T2 D_cf part E realizations and labelings", (1000, 40), (ve["R"], ve["K"]))
+    for cell, gen in zip(Q["tab:level"][8][1:], ("inverse", "nested", "rank")):
+        interval(f"T2 level D_cf {gen}", cell, ve["D_cf"][gen]["level"], ve["D_cf"][gen]["level_ci"])
+    lv = [ve["D_cf"][g]["level"] for g in ("inverse", "nested", "rank")]
+    same("2.3 D_cf level lowest (%)", "26", 100 * min(lv)); same("2.3 D_cf level highest (%)", "31", 100 * max(lv))
+    same("2.3 D_cf null mean under the reference model", "0.00118", ve["D_cf"]["inverse"]["null_mean"])
+    same("2.3 D_cf mean under the true process", "0.00127", ve["D_cf"]["inverse"]["true_mean"])
 
     # ---------------------------------------------------------------- Table 3, resolution rule
     rr = J("13_resolution_rule.json")
@@ -65,19 +74,50 @@ def run(check):
         same(f"T4 W={W} Holm", row[10], m["p_holm"])
         check(f"T4 W={W} R", 2000, m["R"])
 
-    # ---------------------------------------------------------------- Table 6, primary family
+    # ---------------------------------------------------------------- Table 6, primary family of four, D_cf descriptive
     pf = J("11b_primary_family.json")
-    for row, name in zip(Q["tab:tests"], ("D_1000", "D_ratio", "m_ratio", "D_cf", "Q_10")):
+    p4 = J("11c_primary_family_four.json")
+    for row, name in zip(Q["tab:tests"], ("D_1000", "D_ratio", "m_ratio", "Q_10", "D_cf")):
         f = pf["family"][name]
         for cell, key in zip(row[2:6], ("obs", "null_mean", "q025", "q975")):
             same(f"T6 {name} {key}", cell, f[key])
-        p, se = re.match(r"([\d.]+) \(([\d.]+)\)", row[6]).groups()
-        same(f"T6 {name} p", p, f["p"]); same(f"T6 {name} se", se, f["p_se"])
-        same(f"T6 {name} Holm", row[7], f["p_holm"])
+        if name == "D_cf":
+            check("T6 D_cf descriptive, no p and no Holm", ["--", "--"], row[6:8])
+        else:
+            g = p4["family"][name]
+            p, se = re.match(r"([\d.]+) \(([\d.]+)\)", row[6]).groups()
+            same(f"T6 {name} p", p, g["p"]); same(f"T6 {name} se", se, g["p_se"])
+            same(f"T6 {name} Holm over four", row[7], g["p_holm"])
         same(f"T6 {name} lattice", row[8], ms["lattice"][name]["value"])
         check(f"T6 {name} lattice at smallest p 1/2001", True, abs(ms["lattice"][name]["p"] - 1 / 2001) < 1e-12)
     check("T6 R", 2000, pf["R"]); check("T6 labelings of D_cf", 40, pf["K"])
-    same("T6 Westfall-Young global p", "0.854", pf["global_minp"]["p_global"])
+    same("T6 Westfall-Young global p over four", "0.753", p4["global_minp"]["p_global"])
+
+    # ---------------------------------------------------------------- Table 5, interval counts by inversion
+    ic = J("05b_interval_counts_inversion.json")
+    check("T5 R", 200, ic["R"]); check("T5 calibration K and R_cal", {"K": 50, "R_cal": 20}, ic["calibration"])
+    check("T5 resolutions", {"100": 20000, "1000": 2000, "5000": 1000, "20000": 1000}, ic["table_S"])
+    for row in Q["tab:counts"]:
+        for k, W in enumerate(("100", "1000", "5000", "20000")):
+            c = ic["table"][f"{row[0]},{W}"]
+            same(f"T5 l={row[0]} W={W} data", row[1 + 2 * k], c["data"])
+            same(f"T5 l={row[0]} W={W} control", row[2 + 2 * k], c["control"])
+    rat = lambda W: [ic["table"][f"{l},{W}"]["ratio"] for l in (1, 2, 5, 20, 100)]
+    same("3.2 ratio W=100 lowest", "0.997", min(rat(100))); same("3.2 ratio W=100 highest", "1.019", max(rat(100)))
+    same("3.2 ratio W=1000 lowest", "1.001", min(rat(1000))); same("3.2 ratio W=1000 highest", "1.034", max(rat(1000)))
+    same("3.2 ratio W=5000 highest", "1.110", max(rat(5000))); same("3.2 ratio W=20000 highest", "1.214", max(rat(20000)))
+    check("3.2 cells outside the band of the reference model", 13, sum(not c["inside"] for c in ic["table"].values()))
+    check("3.2 cells inside the true-Poisson range", 20, sum(c["ratio_inside_poisson"] for c in ic["table"].values()))
+    same("3.2 largest true-Poisson mean ratio", "1.225", max(c["poisson_ratio_mean"] for c in ic["table"].values()))
+    check("3.2 it is at l=20, W=20000", "20,20000", max(ic["table"], key=lambda k: ic["table"][k]["poisson_ratio_mean"]))
+
+    # ---------------------------------------------------------------- 3.4 sensitivity by inversion
+    se25 = J("25_sensitivity_inversion.json")
+    check("3.4 sensitivity R", 2000, se25["R"])
+    ps25 = [se25["resolution"][S]["1000"]["p"] for S in ("2000", "5000", "20000", "100000")]
+    same("3.4 D_1000 over resolutions lowest", "0.315", min(ps25)); same("3.4 D_1000 over resolutions highest", "0.367", max(ps25))
+    same("3.4 counting function distance", "0.00056", se25["counting_function"]["D"])
+    same("3.4 counting function p", "0.583", se25["counting_function"]["p"])
 
     # ---------------------------------------------------------------- Table 7, generators
     g = J("11_reference_model.json")
@@ -125,11 +165,15 @@ def run(check):
 
     # ---------------------------------------------------------------- Table 10, confirmatory 1e18-1e24
     ex = J("19_census_1e24_report.json")["by_range"]["all"]["stats"]
+    e2 = J("19_census_1e24_report_R200.json")["by_range"]["all"]["stats"]
     for row, name in zip(Q["tab:external"], ("D_1000", "D_ratio", "m_ratio", "Q_10", "rho_1_excess")):
         same(f"T10 {name} value", row[1], ex[name]["value"])
-        same(f"T10 {name} R", row[2], ex[name]["R"])
-        same(f"T10 {name} p", row[3], ex[name]["p"])
-        same(f"T10 {name} Holm", row[4], ex[name]["p_holm"])
+        same(f"T10 {name} R of the plan", row[2], e2[name]["R"])
+        same(f"T10 {name} p of the plan", row[3], e2[name]["p"])
+        same(f"T10 {name} Holm of the plan", row[4], e2[name]["p_holm"])
+        check(f"T10 {name} R beyond the plan", 1000, ex[name]["R"])
+        same(f"T10 {name} p with R=1000", row[5], ex[name]["p"])
+        same(f"T10 {name} Holm with R=1000", row[6], ex[name]["p_holm"])
 
     # ---------------------------------------------------------------- Table 11, classes 1e18-1e24
     sv = J("23_slow_variation_1e24_by_r.json")
@@ -140,6 +184,13 @@ def run(check):
         rep = J(f"19_census_1e24_report_r{r}.json")["by_range"]["all"]["stats"]
         for cell, name in zip(row[3:], ("D_1000", "D_ratio", "m_ratio", "Q_10", "rho_1_excess")):
             same(f"T11 r={r} {name}", cell, rep[name]["p"])
+            check(f"T11 r={r} {name} R", 1000, rep[name]["R"])
+    r3 = J("19_census_1e24_report_r3.json")["by_range"]["all"]["stats"]
+    same("3.7 r=3 D_1000 p", "0.004", r3["D_1000"]["p"]); same("3.7 r=3 D_1000 Holm", "0.020", r3["D_1000"]["p_holm"])
+    same("3.7 r=3 D_ratio p", "0.682", r3["D_ratio"]["p"]); same("3.7 r=3 mean ratio p", "0.905", r3["m_ratio"]["p"])
+    adj = [(J(f"19_census_1e24_report_r{r}.json")["by_range"]["all"]["stats"][n]["p_holm"], r, n) for r in range(3, 13)
+           for n in ("D_1000", "D_ratio", "m_ratio", "Q_10", "rho_1_excess")]
+    check("3.7 only Holm value at or below 0.05 is r=3 D_1000", [(3, "D_1000")], [(r, n) for a, r, n in adj if a <= 0.05])
 
     # ---------------------------------------------------------------- Tables 12 and 13, leading digits
     for lab, f, tag in (("tab:digits", "16_digits_bootstrap.json", "T12"), ("tab:digits24", "22_digits_1e24.json", "T13")):
@@ -236,10 +287,12 @@ def run(check):
     check("3.7 numbers 1e23-1e24", 184897957, obs["decade_bounds"][6] - obs["decade_bounds"][5])
     mu = J("24_multiplicity_by_r.json")
     check("3.7 tests over classes and decades", 350, mu["all_cells"]["tests"])
-    check("3.7 below 0.05", 16, mu["all_cells"]["below_005"]); check("3.7 at most 0.01", 5, mu["all_cells"]["at_most_001"])
-    same("3.7 smallest BH", "0.70", mu["all_cells"]["min_bh"])
+    check("3.7 below 0.05", 14, mu["all_cells"]["below_005"]); check("3.7 at most 0.01", 4, mu["all_cells"]["at_most_001"])
+    same("3.7 smallest BH", "0.525", mu["all_cells"]["min_bh"])
+    same("3.7 smallest p over the cells", "0.002", mu["all_cells"]["smallest"][0][3])
+    check("3.7 it is r=12 1e19-1e20 D_1000", [12, "1e19-1e20", "D_1000"], mu["all_cells"]["smallest"][0][:3])
     check("3.7 tests in cells of at least 100,000", 270, mu["cells_ge_100000"]["tests"])
-    check("3.7 below 0.05 there", 12, mu["cells_ge_100000"]["below_005"]); same("3.7 smallest BH there", "0.68", mu["cells_ge_100000"]["min_bh"])
+    check("3.7 below 0.05 there", 11, mu["cells_ge_100000"]["below_005"]); same("3.7 smallest BH there", "0.54", mu["cells_ge_100000"]["min_bh"])
     s3 = J("23_slow_variation_1e24_by_r_decade.json")["3"][0]
     same("3.7 r=3 first decade share above 0.05 (%)", "32", 100 * s3[2])
     svr = J("23_slow_variation_1e24_by_r.json")

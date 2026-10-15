@@ -7,7 +7,7 @@ import os
 import re
 import sys
 
-LABELS = ["tab:level", "tab:rule", "tab:windows", "tab:tests", "tab:generators", "tab:decades", "tab:strata",
+LABELS = ["tab:level", "tab:rule", "tab:windows", "tab:counts", "tab:tests", "tab:generators", "tab:decades", "tab:strata",
           "tab:external", "tab:external-r", "tab:digits", "tab:digits24", "tab:power"]
 
 
@@ -24,7 +24,7 @@ def table_rows(tex, label):
     b = tex.index("\\bottomrule", a)
     rows = []
     for line in tex[a:b].split("\\\\"):
-        line = line.strip()
+        line = line.replace("\\midrule", "").strip()
         if line:
             rows.append([clean(c) for c in line.split("&")])
     return rows

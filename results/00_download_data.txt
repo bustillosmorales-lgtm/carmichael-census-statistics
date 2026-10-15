@@ -1,0 +1,9 @@
+downloading carmichael-16.gz
+carmichael-16.gz   sha256 OK
+downloading carmichael17.gz
+carmichael17.gz    sha256 OK
+downloading carmichael18.gz
+carmichael18.gz    sha256 OK
+downloading car3-18.gz
+car3-18.gz         sha256 OK
+all checksums match: True

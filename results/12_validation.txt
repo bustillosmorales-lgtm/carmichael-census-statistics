@@ -7,6 +7,7 @@
 [PASS] B2 ratio law 2x/(1+x): KS p = 0.239
 [PASS] B3 interval counts: variance/mean = 1: 1.0017 over 200272 intervals of length 5
 [PASS] B4 supremum distance follows the Kolmogorov law: KS p = 0.047
+[PASS] B4b supremum distance follows the Kolmogorov law, 20,000 replicates: KS p = 0.185
 [PASS] C1 [inversion] total count Poisson(Lambda): 47261 vs 47169 (z=+0.42)
 [PASS] C2 [inversion] time-rescaled gaps Exp(1): KS p = 0.797
 [PASS] C3 [inversion] counts in 60 intervals Poisson with mean dLambda: chi2 = 62.5 on 60 df, p = 0.388
@@ -22,8 +23,9 @@ D D_5000   inverse: level=0.744 [0.716,0.771] KS p=0.000  nested: level=0.745 [0
 D D_20000  inverse: level=1.000 [0.996,1.000] KS p=0.000  nested: level=1.000 [0.996,1.000] KS p=0.000  rank: level=0.999 [0.994,1.000] KS p=0.000
 D D_ratio  inverse: level=0.057 [0.043,0.073] KS p=0.501  nested: level=0.057 [0.043,0.073] KS p=0.200  rank: level=0.049 [0.036,0.064] KS p=0.685
 D m_ratio  inverse: level=0.040 [0.029,0.054] KS p=0.685  nested: level=0.057 [0.043,0.073] KS p=0.860  rank: level=0.039 [0.028,0.053] KS p=0.610
+D D_cf     inverse: level=0.136 [0.115,0.159] KS p=0.000  nested: level=0.120 [0.101,0.142] KS p=0.000  rank: level=0.143 [0.122,0.166] KS p=0.000
 D rho_1    inverse: level=0.059 [0.045,0.075] KS p=0.648  nested: level=0.046 [0.034,0.061] KS p=0.181  rank: level=0.060 [0.046,0.077] KS p=0.288
 D rho_2    inverse: level=0.068 [0.053,0.085] KS p=0.573  nested: level=0.060 [0.046,0.077] KS p=0.954  rank: level=0.062 [0.048,0.079] KS p=0.573
-D urho_1   inverse: level=0.070 [0.055,0.088] KS p=0.000  nested: level=0.075 [0.059,0.093] KS p=0.000  rank: level=0.078 [0.062,0.096] KS p=0.000
-D urho_2   inverse: level=0.078 [0.062,0.096] KS p=0.000  nested: level=0.056 [0.043,0.072] KS p=0.000  rank: level=0.061 [0.047,0.078] KS p=0.000
-done in 4060s; failures: none
+D Q_10     inverse: level=0.049 [0.036,0.064] KS p=0.013  nested: level=0.061 [0.047,0.078] KS p=0.936  rank: level=0.045 [0.033,0.060] KS p=0.097
+E D_cf(40) inverse: level=0.259 [0.232,0.287]  nested: level=0.311 [0.282,0.341]  rank: level=0.302 [0.274,0.332]
+done in 13364s; failures: none

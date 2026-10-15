@@ -1,0 +1,7 @@
+S=20000: 100,100: 0.1714/0.1683  100,1000: 0.9337/0.8958  100,5000: 1.4526/0.9858  100,20000: 4.3100/1.1681
+S=2000: 100,100: 0.1714/0.1685  100,1000: 0.9337/0.9029  100,5000: 1.4526/1.1459  100,20000: 4.3100/2.9620
+S=1000: 100,100: 0.1714/0.1686  100,1000: 0.9337/0.9173  100,5000: 1.4526/1.3084  100,20000: 4.3100/3.6403
+W=100 (S=20000): data/control 0.997 to 1.019, inside control range 5/5, ratio inside the range of a true Poisson process 5/5; Poisson ranges [0.997,1.002] [0.997,1.004] [0.995,1.007] [0.992,1.014] [0.978,1.043]
+W=1000 (S=2000): data/control 1.001 to 1.034, inside control range 2/5, ratio inside the range of a true Poisson process 5/5; Poisson ranges [1.000,1.003] [0.999,1.005] [1.002,1.012] [1.006,1.027] [1.014,1.068]
+W=5000 (S=1000): data/control 1.011 to 1.110, inside control range 0/5, ratio inside the range of a true Poisson process 5/5; Poisson ranges [1.009,1.017] [1.016,1.026] [1.029,1.045] [1.062,1.091] [1.089,1.136]
+W=20000 (S=1000): data/control 1.069 to 1.214, inside control range 0/5, ratio inside the range of a true Poisson process 5/5; Poisson ranges [1.061,1.084] [1.090,1.121] [1.140,1.181] [1.203,1.250] [1.170,1.210]
